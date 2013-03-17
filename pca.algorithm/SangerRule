@@ -31,7 +31,8 @@ public class SangerRule {
 		eta = 0.01;
 	}
 	
-	/*Update the W ( W = W + eta * y *(X - y * W); here y = W * X) */
+		//Update the W: W = W + W_deta;
+		//Here W_deta(i,j) = eta * Y(j) * (X(i) - sum(W(i,k) * Y(k)));
 	public Matrix update(Matrix X){
 		Matrix Y = new Matrix(1,W.getRowDimension());
 		
@@ -46,8 +47,7 @@ public class SangerRule {
 			Y.set(0, j, s);
 		}
 		
-		//Update the W: W = W + W_deta;
-		//Here W_deta(i,j) = eta * Y(j) * (X(i) - sum(W(i,k) * Y(k)));
+
 		Matrix W_deta = new Matrix(W.getRowDimension(),W.getColumnDimension());
 		for(int i = 0; i < W.getRowDimension();++i)
 			for(int j = 0; j < W.getColumnDimension();++j)
