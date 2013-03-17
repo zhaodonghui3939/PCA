@@ -36,7 +36,7 @@ public class Test {
 		double[][] data1 = data.getArray();
 	    Random rd = new Random();  
 	    for(int i = 0;i < data.getRowDimension(); ++i){
-	    	int temp = rd.nextInt(data.getRowDimension());
+	    	int temp = rd.nextInt(data.getRowDimension()- 1);
 	        face.update(data1[temp]);
 	}
 	    
