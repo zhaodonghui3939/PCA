@@ -6,8 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Random;
-
-import pca.algorithm.OjaRule;
 import pca.algorithm.SangerRule;
 import pca.math.Matrix;
 
@@ -22,18 +20,16 @@ public class Test {
 		try {
 			reader = new BufferedReader(new FileReader(file) );
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Matrix temp1 = null;
 		try {
-			data = temp1.read(reader);
-			
+			Matrix temp1 = null;
+			data = temp1.read(reader);	
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
+		
 		SangerRule face = new SangerRule(2,2);  // here init the face with 2 demension and 2 main component 
 		
 		
@@ -44,10 +40,10 @@ public class Test {
 	        face.update(data1[temp]);
 	}
 	    
-	face.getW().print(data.getColumnDimension(), 10);
+	face.getW().print(data.getColumnDimension(), 10);       //print the W coefficients
 	
-	Matrix data_new = data.times(face.getW().transpose());
-	data_new.print(2, 10);
+	Matrix data_new = data.times(face.getW().transpose());  //compute the main components
+	data_new.print(2, 10);               //print the result
 	
 	}
 	
