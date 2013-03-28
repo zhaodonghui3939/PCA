@@ -14,7 +14,7 @@ public class SangerRule {
 		for(int i = 0; i < W.getRowDimension(); ++i)
 		for(int j = 0;j < W.getColumnDimension(); ++j){
 			W.set(i, j, rd.nextDouble());
-		}	
+		}
 	}
 	
 	public Matrix getW() {
@@ -64,6 +64,17 @@ public class SangerRule {
 		
 
 		W.plusEquals(W_deta);
+		//Norm the data
+		double[] s = new double[W.getRowDimension()];
+		for(int i = 0;i < W.getRowDimension();++i)
+			for(int j = 0;j < W.getColumnDimension();++j){
+				s[i] = s[i] + W.get(i, j) * W.get(i, j);			
+			}
+		for(int i = 0;i < W.getRowDimension();++i)
+			for(int j = 0;j < W.getColumnDimension();++j){
+				W.set(i, j, W.get(i, j)/Math.sqrt(s[i]));			
+			}
+		
 		return W;
 	
 	}
